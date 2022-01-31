@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/vue/dist/vue.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div id="exercise">
+
+      <div class="healthBars">
+        <div class="bar">
+          <div class="healthText"><strong>YOU</strong></div>
+          <div class="outline">
+            <div class="healthBar" :style="{width: (playerHealth * 2) + 'px'}">{{playerHealth}}</div>
+          </div>
+        </div>
+        <div class="bar">
+          <div class="healthText"><strong>MONSTER</strong></div>
+          <div class="outline">
+            <div class="healthBar" :style="{width: (monsterHealth * 2) + 'px'}">{{monsterHealth}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <div v-if="showButtons">
+          <button class="btn danger" @click="attack()">ATTACK</button>
+          <button class="btn info" @click="specialAttack()">SPECIAL ATTACK</button>
+          <button class="btn success" @click="heal()">HEAL</button>
+          <button class="btn default" @click="giveUp()">GIVE UP</button>
+        </div>
+        <div v-else>
+          <button class="btn success" @click="startGame()">START NEW GAME</button>
+        </div>
+      </div>
+
+      <div class="actions" v-if="moves.length > 0">
+        <div :class="['move' + (index % 2)]" v-for="(move, index) in moves">
+          <strong>{{ move }}</strong>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>
